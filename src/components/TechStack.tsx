@@ -1,27 +1,59 @@
-import { techStack } from "@/data/content";
+import {
+  FaDocker,
+  FaNodeJs,
+  FaPython,
+  FaReact,
+} from "react-icons/fa";
+
+import {
+  SiVuedotjs,
+  SiPostgresql,
+} from "react-icons/si";
+
+const techStack = [
+  {
+    name: "Docker",
+    icon: <FaDocker className="text-[#2496ED] text-3xl" />,
+  },
+  {
+    name: "Node.js",
+    icon: <FaNodeJs className="text-[#3C873A] text-3xl" />,
+  },
+  {
+    name: "Python",
+    icon: <FaPython className="text-[#3776AB] text-3xl" />,
+  },
+  {
+    name: "Vue.js",
+    icon: <SiVuedotjs className="text-[#42B883] text-3xl" />,
+  },
+  {
+    name: "React",
+    icon: <FaReact className="text-[#61DAFB] text-3xl" />,
+  },
+  {
+    name: "PostgreSQL",
+    icon: <SiPostgresql className="text-[#336791] text-3xl" />,
+  },
+];
 
 export default function TechStack() {
   return (
-    <section className="px-6 py-24 lg:px-12 lg:py-36">
-      <div className="mx-auto max-w-content">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-display text-[clamp(2.25rem,5vw,3.75rem)] font-bold text-white">
-            Our Tech Stack
-          </h2>
-          <p className="mt-6 text-base leading-relaxed text-white/70 sm:text-lg">
-            We leverage industry-leading technologies to build scalable,
-            future-proof solutions.
-          </p>
-        </div>
+    <section className="bg-black py-14 lg:py-16">
+      <div className="w-full px-0">
+        <h2 className="text-center text-5xl font-bold text-orange-400 mb-8">
+          Our Tech Stack
+        </h2>
 
-        <div className="mt-16 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
+        <div className="bg-[#242424] py-5 px-10 lg:px-16 flex flex-wrap items-center justify-between gap-4 w-full">
           {techStack.map((tech) => (
             <div
-              key={tech}
-              className="group flex h-[120px] items-center justify-center rounded-[20px] border border-line bg-surface/60 transition-all duration-300 hover:border-amber/60 hover:shadow-[0_0_30px_rgba(221,121,0,0.08)]"
+              key={tech.name}
+              className="bg-white rounded-full px-8 py-3 flex items-center gap-3 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 cursor-pointer"
             >
-              <span className="font-display text-lg text-white/80 transition-colors group-hover:text-amber-light">
-                {tech}
+              {tech.icon}
+              <span className="font-semibold text-gray-700">
+                {tech.name}
               </span>
             </div>
           ))}

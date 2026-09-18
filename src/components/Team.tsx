@@ -1,79 +1,67 @@
-"use client";
-
-import { useRef } from "react";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { team } from "@/data/content";
+import styles from "./TeamSection.module.css";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 
-export default function Team() {
-  const scroller = useRef<HTMLDivElement>(null);
+const team = [
+  {
+    name: "Marzooq lakhani",
+    role: "CEO",
+    image: "/images/ceo.png",
+  },
+  {
+    name: "Talib pirani",
+    role: "CTO",
+    image: "/images/developer.png",
+  },
+];
 
-  const scrollBy = (dir: 1 | -1) => {
-    scroller.current?.scrollBy({ left: dir * 340, behavior: "smooth" });
-  };
-
+export default function TeamSection() {
   return (
-    <section className="px-6 py-24 lg:px-12 lg:py-36">
-      <div className="mx-auto max-w-content">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <div>
-            <span className="inline-flex items-center gap-2 rounded-pill border border-line bg-surface px-5 py-2.5 text-sm font-medium text-white/90">
-              Our Team
-              <ArrowRight className="h-3.5 w-3.5 -rotate-45 text-amber" />
-            </span>
-            <h2 className="mt-6 font-display text-[clamp(2.25rem,5vw,3.75rem)] font-bold text-white">
-              Meet Our Creative Team
-            </h2>
-          </div>
+    <section className={styles.section}>
+      <div className={styles.headerTop}>
+        <button className={styles.tag}>OUR TEAM <ArrowRight size={14} /></button>
+      </div>
+      <div className={styles.header}>
+        <h2>
+          Meet Our <span className={styles.outlineText}>Creative</span> Team
+        </h2>
+        <button className={styles.viewAllBtn}>VIEW ALL TEAM</button>
+      </div>
 
-          <a
-            href="#team"
-            className="rounded-pill border border-line px-6 py-3 text-sm text-white/90 transition-colors hover:border-amber/60"
-          >
-            View All Team
-          </a>
-        </div>
+      <div className={styles.wrapper}>
+        <button className={styles.arrow} aria-label="Previous team member">
+          <ArrowLeft size={20} />
+        </button>
 
-        <div className="relative mt-14">
-          <div
-            ref={scroller}
-            className="flex gap-8 overflow-x-auto scroll-smooth pb-4 [&::-webkit-scrollbar]:hidden"
-          >
-            {team.map((member, i) => (
-              <div key={i} className="w-[280px] shrink-0">
-                <div className="relative h-[340px] w-full overflow-hidden rounded-[28px] border border-line">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <p className="mt-4 text-sm text-amber-light">{member.role}</p>
-                <p className="mt-1 font-display text-xl text-white">
-                  {member.name}
-                </p>
+        <div className={styles.grid}>
+          {team.map((member, index) => (
+            <div className={styles.card} key={index}>
+              <div className={styles.imageWrapper}>
+                <Image
+                  src={member.image}
+                  alt={member.name}
+                  width={300}
+                  height={300}
+                  className={styles.image}
+                />
               </div>
-            ))}
-          </div>
-
-          <div className="mt-8 flex items-center justify-center gap-4">
-            <button
-              aria-label="Previous team member"
-              onClick={() => scrollBy(-1)}
-              className="flex h-14 w-14 items-center justify-center rounded-full border border-line text-white transition-colors hover:border-amber/60 hover:text-amber-light"
-            >
-              <ArrowLeft className="h-5 w-5" />
-            </button>
-            <button
-              aria-label="Next team member"
-              onClick={() => scrollBy(1)}
-              className="flex h-14 w-14 items-center justify-center rounded-full border border-line text-white transition-colors hover:border-amber/60 hover:text-amber-light"
-            >
-              <ArrowRight className="h-5 w-5" />
-            </button>
-          </div>
+              <div className={styles.info}>
+                <p>{member.role}</p>
+                <h4>{member.name}</h4>
+              </div>
+            </div>
+          ))}
         </div>
+
+        <button className={`${styles.arrow} ${styles.active}`} aria-label="Next team member">
+          <ArrowRight size={20} />
+        </button>
+      </div>
+
+      <div className={styles.pagination}>
+        <span className={`${styles.dot} ${styles.activeDot}`} />
+        <span className={styles.dot} />
+        <span className={styles.dot} />
       </div>
     </section>
   );

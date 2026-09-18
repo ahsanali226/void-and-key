@@ -3,10 +3,10 @@ import { services } from "@/data/content";
 
 export default function Services() {
   return (
-    <section id="services" className="px-6 py-24 lg:px-12 lg:py-36">
+    <section id="services" className="px-6 py-14 lg:px-12 lg:py-20">
       <div className="mx-auto max-w-content">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-display text-[clamp(2.25rem,5vw,3.75rem)] font-bold text-white">
+          <h2 className="font-display text-[clamp(2.25rem,5vw,3.75rem)] font-bold text-gradient">
             Services
           </h2>
           <p className="mt-6 text-base leading-relaxed text-white/70 sm:text-lg">
@@ -16,7 +16,7 @@ export default function Services() {
           </p>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
             <article
               key={service.title}

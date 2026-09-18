@@ -8,6 +8,7 @@ interface SlideButtonProps {
   className?: string;
   iconClassName?: string;
   targetId?: string;
+  href?: string;
   onAction?: () => void;
 }
 
@@ -16,6 +17,7 @@ export default function SlideButton({
   className = "",
   iconClassName = "",
   targetId = "contact",
+  href,
   onAction,
 }: SlideButtonProps) {
   const [isDragging, setIsDragging] = useState(false);
@@ -29,10 +31,10 @@ export default function SlideButton({
   const handlePointerDown = (e: PointerEvent<HTMLSpanElement>) => {
     // Only allow left click / touch
     if (e.button !== 0 && e.pointerType === "mouse") return;
-    
+
     setIsDragging(true);
     startX.current = e.clientX - offset;
-    
+
     // Capture pointer to track dragging outside the element
     if (thumbRef.current) {
       thumbRef.current.setPointerCapture(e.pointerId);
@@ -49,7 +51,7 @@ export default function SlideButton({
     // The .btn-pill has padding: 0 32px 0 16px;
     const trackWidth = trackRef.current.getBoundingClientRect().width;
     const thumbWidth = thumbRef.current.getBoundingClientRect().width;
-    
+
     // 48 = 32px (right pad) + 16px (left pad where thumb starts)
     const maxOffset = trackWidth - thumbWidth - 48;
 
@@ -62,7 +64,7 @@ export default function SlideButton({
 
   const handlePointerUp = (e: PointerEvent<HTMLSpanElement>) => {
     if (!isDragging || !trackRef.current || !thumbRef.current) return;
-    
+
     setIsDragging(false);
     if (thumbRef.current) {
       thumbRef.current.releasePointerCapture(e.pointerId);
@@ -75,17 +77,20 @@ export default function SlideButton({
     // Trigger threshold (e.g., dragged past 80%)
     if (offset > maxOffset * 0.8) {
       setOffset(maxOffset);
-      
+
       onAction?.();
 
-      // Execute the scroll action
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: "smooth" });
+      if (href) {
+        window.location.href = href;
       } else {
-        window.location.hash = `#${targetId}`;
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: "smooth" });
+        } else {
+          window.location.hash = `#${targetId}`;
+        }
       }
-      
+
       // Reset button after a short delay
       setTimeout(() => {
         setOffset(0);

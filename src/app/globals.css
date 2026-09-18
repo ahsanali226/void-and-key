@@ -99,3 +99,38 @@ button:focus-visible {
   outline-offset: 3px;
   border-radius: 4px;
 }
+
+/* Pure CSS grain / noise texture — no image file needed */
+.hero-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.9) 0.5px, transparent 0.5px),
+    radial-gradient(circle, rgba(255,255,255,0.7) 0.5px, transparent 0.5px),
+    radial-gradient(circle, rgba(255,255,255,0.8) 0.5px, transparent 0.5px),
+    radial-gradient(circle, rgba(255,255,255,0.6) 0.5px, transparent 0.5px),
+    radial-gradient(circle, rgba(255,255,255,0.9) 0.5px, transparent 0.5px),
+    radial-gradient(circle, rgba(255,255,255,0.5) 0.5px, transparent 0.5px),
+    radial-gradient(circle, rgba(255,255,255,0.7) 0.5px, transparent 0.5px),
+    radial-gradient(circle, rgba(255,255,255,0.8) 0.5px, transparent 0.5px);
+  background-size:
+    23px 23px,
+    31px 31px,
+    17px 17px,
+    41px 41px,
+    13px 13px,
+    37px 37px,
+    29px 29px,
+    19px 19px;
+  background-position:
+    0 0,
+    7px 11px,
+    14px 5px,
+    3px 20px,
+    18px 8px,
+    10px 25px,
+    22px 14px,
+    5px 17px;
+  opacity: 0.35;
+}

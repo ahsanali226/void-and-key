@@ -16,7 +16,12 @@
 npm-debug.log*
 
 # local env files
+.env
 .env*.local
+!.env.example
+
+# os / junk
+*.lnk
 
 # vercel
 .vercel
@@ -24,3 +29,5 @@ npm-debug.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.vercel

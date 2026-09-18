@@ -13,36 +13,34 @@ export default function Portfolio() {
       : portfolioItems.filter((item) => item.category === active);
 
   return (
-    <section id="portfolio" className="px-6 py-24 lg:px-12 lg:py-36">
+    <section id="portfolio" className="px-6 py-14 lg:px-12 lg:py-20">
       <div className="mx-auto max-w-content">
         <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-display text-[clamp(2.25rem,5vw,3.75rem)] font-bold text-white">
+          <h2 className="font-display text-[clamp(2.25rem,5vw,3.75rem)] font-bold text-gradient">
             Portfolio
           </h2>
           <p className="mt-6 text-base leading-relaxed text-white/70 sm:text-lg">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
-            risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing
-            nec, ultricies sed, dolor.
+            Explore a selection of our recent work across websites, branding,
+            UI/UX, and digital campaigns built to help brands grow with purpose.
           </p>
         </div>
 
-        <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           {portfolioFilters.map((filter) => (
             <button
               key={filter}
               onClick={() => setActive(filter)}
-              className={`rounded-pill px-5 py-2.5 text-sm transition-colors ${
-                active === filter
-                  ? "bg-cta-gradient-light text-ink"
-                  : "border border-line text-white/80 hover:border-amber/60 hover:text-white"
-              }`}
+              className={`rounded-pill px-5 py-2.5 text-sm transition-colors ${active === filter
+                ? "bg-cta-gradient-light text-ink"
+                : "border border-line text-white/80 hover:border-amber/60 hover:text-white"
+                }`}
             >
               {filter}
             </button>
           ))}
         </div>
 
-        <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {visible.map((item) => (
             <article
               key={item.title}
