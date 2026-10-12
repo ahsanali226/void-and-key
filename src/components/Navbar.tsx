@@ -81,7 +81,7 @@ export default function Navbar() {
           })}
         </ul>
 
-        <TalkButton href="/contact" className="hidden lg:flex" />
+        <TalkButton href="/contact" label="Start a Project" className="hidden lg:flex" />
 
         <button
           aria-label={open ? "Close menu" : "Open menu"}

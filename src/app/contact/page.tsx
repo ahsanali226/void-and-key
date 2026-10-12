@@ -1,74 +1,78 @@
-import Link from "next/link";
-import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import Marquee from "@/components/Marquee";
+import BookingSection from "@/components/BookingSection";
+import Testimonials from "@/components/Testimonials";
+import TechStack from "@/components/TechStack";
+import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
-import ContactForm from "@/components/ContactForm";
 import "./contact.css";
 
+export const metadata: Metadata = {
+  title: "Contact Void & Key | Start Your Technical or Operations Project",
+  description:
+    "Connect with our engineering and operations leads to review architecture, project timelines, and operational requirements.",
+  keywords: [
+    "contact Void & Key",
+    "tech consultation",
+    "enterprise project intake",
+    "software architecture consultation",
+  ],
+};
+
 export default function ContactPage() {
-    return (
-        <>
-            <Navbar />
-            <main className="contact-page">
-                <section className="contact-hero">
-                    <div className="contact-hero-copy">
-                        <p className="contact-eyebrow">Start a conversation</p>
-                        <h1>
-                            {"Let's"} <span>Talk!</span>
-                        </h1>
-                        <p className="contact-intro">
-                            {"Have a challenge in mind? Tell us what you're building, and we'll help you find the clearest path forward."}
-                        </p>
-                    </div>
-                    <Link href="/#home" className="contact-back-link">
-                        <ArrowRight size={18} />
-                        Back to home
-                    </Link>
-                </section>
+  return (
+    <div className="booking-page-root">
+      <Navbar />
+      <main>
+        {/* Hero Section matching Document 3.pdf Page 13 */}
+        <Hero
+          badge="PROJECT INTAKE & ARCHITECTURE CONSULTATION"
+          highlightTitle="Let’s Discuss"
+          mainTitle="Your Technical Architecture or Operational Needs."
+          description="Whether you’re modernizing a legacy web platform or offloading operational bottlenecks, our senior team is ready to map out an execution plan."
+          ctaText="Schedule a Call"
+          ctaLink="#booking"
+          secondaryCtaText="Submit Project Inquiry"
+          secondaryCtaLink="#booking"
+          showSocialSidebar={false}
+          showImageStack={true}
+          cardImages={[
+            { src: "/images/contact_image_1.png", alt: "Senior architects reviewing project requirements" },
+            { src: "/images/contact_image_2.png", alt: "Technical consultation and execution planning" },
+            { src: "/images/contact_image_3.png", alt: "Operations and software roadmap session" },
+          ]}
+        />
 
-                <section className="contact-grid" aria-label="Contact Void And Key">
-                    <div className="contact-details">
-                        <p className="contact-section-label">Find us here</p>
-                        <h2>Bring your next idea into focus.</h2>
-                        <p className="contact-details-copy">
-                            From first sketch to final launch, our team brings strategy, design,
-                            and technology together around the problem that matters most.
-                        </p>
+        {/* Marquee Ticker */}
+        <Marquee />
 
-                        <div className="contact-methods">
-                            <a href="mailto:Info@voidandkey.com" className="contact-method">
-                                <span className="contact-method-icon"><Mail size={19} /></span>
-                                <span>
-                                    <strong>Email us</strong>
-                                    <small>Info@voidandkey.com</small>
-                                </span>
-                            </a>
-                            <a href="tel:+16124660346" className="contact-method">
-                                <span className="contact-method-icon"><Phone size={19} /></span>
-                                <span>
-                                    <strong>Call us</strong>
-                                    <small>+1 612-466-0346</small>
-                                </span>
-                            </a>
-                            <a
-                                href="https://maps.google.com/?q=1003+S+Front+St+%23100,+Mankato,+MN+56001"
-                                className="contact-method"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                <span className="contact-method-icon"><MapPin size={19} /></span>
-                                <span>
-                                    <strong>Visit us</strong>
-                                    <small>1003 S Front St #100, Mankato, MN</small>
-                                </span>
-                            </a>
-                        </div>
-                    </div>
+        {/* Dual Tab Booking & Contact Section */}
+        <BookingSection id="booking" />
 
-                    <ContactForm />
-                </section>
-            </main>
-            <Footer />
-        </>
-    );
+        {/* Direct Response SLA Callout */}
+        <div className="border-y border-white/10 bg-surface/40 py-8 px-6 text-center">
+          <div className="mx-auto max-w-2xl">
+            <span className="font-display text-xs font-bold uppercase tracking-wider text-amber">
+              DIRECT RESPONSE SLA
+            </span>
+            <p className="mt-2 text-sm text-white/80 sm:text-base leading-relaxed">
+              We review and respond to inquiries within <strong>1 business day</strong>. Every intake is assessed by a technical director, not an outsourced SDR.
+            </p>
+          </div>
+        </div>
+
+        {/* Testimonials */}
+        <Testimonials />
+
+        {/* Tech Stack */}
+        <TechStack />
+
+        {/* CTA Banner */}
+        <CTA />
+      </main>
+      <Footer />
+    </div>
+  );
 }

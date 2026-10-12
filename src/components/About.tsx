@@ -1,5 +1,5 @@
 import { ArrowUpRight } from "lucide-react";
-import { aboutServices } from "@/data/content";
+import { coreValueProposition } from "@/data/content";
 import AboutImages from "./AboutImages";
 
 export default function About() {
@@ -7,53 +7,58 @@ export default function About() {
     <section id="about" className="px-6 py-16 lg:px-12 lg:py-24">
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 gap-12 lg:grid-cols-[1.1fr,0.9fr] lg:items-center">
         <div>
-          {/* Eyebrow badge matching design screenshot */}
+          {/* Eyebrow badge matching Document 3.pdf */}
           <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-transparent px-5 py-2 text-xs font-semibold uppercase tracking-wider text-white/90">
-            ABOUT US
+            {coreValueProposition.eyebrow}
             <ArrowUpRight className="h-3.5 w-3.5 text-amber" />
           </span>
 
-          {/* Headline with refined lightweight typography */}
-          <h2 className="mt-8 font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.15] tracking-tight font-normal">
-            <span className="font-light text-white">We </span>
-            <span className="font-semibold text-white">Craft </span>
-            <span className="font-light text-white">Wonderful</span>
-            <br />
-            <span className="font-bold text-gradient">Digital Experiences</span>
-            <br />
-            <span className="font-light text-white">For Brands</span>
+          {/* Headline matching Document 3.pdf */}
+          <h2 className="mt-8 font-display text-[clamp(2.25rem,4.5vw,3.75rem)] leading-[1.15] tracking-tight font-normal">
+            <span className="font-semibold text-white">Technology is only as good </span>
+            <br className="hidden sm:block" />
+            <span className="font-bold text-gradient">as the operations supporting it.</span>
           </h2>
 
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
-            At Void & Key, we blend creativity with technology to build
-            digital experiences that captivate and convert. From strategy to
-            execution, our team delivers results that elevate your brand
-            and drive real growth.
-          </p>
+          <div className="mt-6 space-y-4 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
+            {coreValueProposition.paragraphs.map((p, idx) => (
+              <p key={idx}>{p}</p>
+            ))}
+          </div>
 
-          {/* Numbered services list matching design screenshot */}
-          <div className="mt-10 flex flex-wrap gap-12 sm:gap-16">
-            {aboutServices.map((s) => (
-              <div key={s.number} className="border-b border-white/20 pb-2">
-                <span className="text-sm font-semibold text-[#dd7900]">{s.number}</span>
-                <p className="mt-1 font-display text-lg font-medium text-white">
-                  {s.label}
-                </p>
+          {/* Capabilities Matrix matching Document 3.pdf */}
+          <div className="mt-10 space-y-4 max-w-xl">
+            {coreValueProposition.capabilitiesMatrix.map((item) => (
+              <div
+                key={item.number}
+                className="flex items-start gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-4 transition-colors hover:border-amber/40"
+              >
+                <span className="font-display text-sm font-bold text-amber shrink-0 pt-0.5">
+                  {item.number}
+                </span>
+                <div>
+                  <h3 className="font-display text-base font-semibold text-white">
+                    {item.title}
+                  </h3>
+                  <p className="mt-1 text-sm text-white/65 leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
 
-          {/* Bottom link matching design screenshot */}
+          {/* Bottom link to services */}
           <a
             href="#services"
             className="mt-10 inline-flex items-center gap-2 text-base font-medium text-amber border-b border-amber/60 pb-0.5 hover:text-amber-light hover:border-amber-light transition-colors"
           >
-            More about us
+            Explore our solutions
             <ArrowUpRight className="h-4 w-4" />
           </a>
         </div>
 
-        {/* Right side tall images without border/stroke */}
+        {/* Right side tall images */}
         <AboutImages />
       </div>
     </section>

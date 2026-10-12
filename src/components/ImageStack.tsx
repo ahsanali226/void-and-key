@@ -1,10 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-const initialCards = [
+interface StackImage {
+  src: string;
+  alt: string;
+}
+
+interface StackCard extends StackImage {
+  id: string;
+}
+
+const defaultCards: StackCard[] = [
   {
     id: "card-1",
     src: "/images/hero_card_img1.png",
@@ -22,16 +31,39 @@ const initialCards = [
   },
 ];
 
+interface ImageStackProps {
+  /** Optional image set; falls back to the homepage hero cards when omitted. */
+  images?: StackImage[];
+}
+
 const positionClasses = [
   "absolute top-0 left-0 z-30",
   "absolute top-5 left-[35px] sm:top-6 sm:left-[45px] z-20",
   "absolute top-10 left-[70px] sm:top-12 sm:left-[90px] z-10",
 ];
 
-export default function ImageStack() {
-  const [cards, setCards] = useState(initialCards);
+export default function ImageStack({ images }: ImageStackProps) {
+  // Build cards from the optional `images` prop, falling back to homepage cards.
+  const baseCards = useMemo<StackCard[]>(() => {
+    if (images && images.length > 0) {
+      return images.map((img, index) => ({
+        id: `card-${index + 1}`,
+        src: img.src,
+        alt: img.alt,
+      }));
+    }
+    return defaultCards;
+  }, [images]);
+
+  const [cards, setCards] = useState(baseCards);
 
   useEffect(() => {
+    setCards(baseCards);
+  }, [baseCards]);
+
+  useEffect(() => {
+    if (cards.length < 2) return;
+
     // Cycle image positions every 2 seconds
     const interval = setInterval(() => {
       setCards((prev) => {
@@ -41,7 +73,7 @@ export default function ImageStack() {
     }, 2000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [cards.length]);
 
   return (
     <div className="relative w-[390px] sm:w-[450px] lg:w-[480px] h-[480px] sm:h-[530px] lg:h-[560px] mx-auto flex items-center justify-center lg:justify-end">

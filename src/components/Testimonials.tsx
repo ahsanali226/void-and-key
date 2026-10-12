@@ -2,7 +2,15 @@
 
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
-const testimonials = [
+export interface TestimonialItem {
+  id: number;
+  name: string;
+  role: string;
+  image: string;
+  review: string;
+}
+
+const defaultTestimonials: TestimonialItem[] = [
   {
     id: 1,
     name: "Emily Carter",
@@ -29,7 +37,14 @@ const testimonials = [
   },
 ];
 
-export default function Testimonials() {
+interface TestimonialsProps {
+  /** Optional testimonial set; falls back to the homepage defaults when omitted. */
+  items?: TestimonialItem[];
+}
+
+export default function Testimonials({ items }: TestimonialsProps) {
+  const testimonials = items && items.length > 0 ? items : defaultTestimonials;
+
   return (
     <section className="bg-black py-14 lg:py-16">
       <div className="max-w-7xl mx-auto px-6">

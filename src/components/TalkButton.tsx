@@ -8,6 +8,7 @@ interface TalkButtonProps {
     href?: string;
     onClick?: () => void;
     targetId?: string;
+    label?: string;
 }
 
 export default function TalkButton({
@@ -15,6 +16,7 @@ export default function TalkButton({
     href,
     onClick,
     targetId = "contact",
+    label = "Let's Talk",
 }: TalkButtonProps) {
     const [isAnimating, setIsAnimating] = useState(false);
 
@@ -68,7 +70,7 @@ export default function TalkButton({
                 className={`relative z-10 px-5 text-[15px] font-medium transition-all duration-300 ${isAnimating ? "-translate-x-3 text-black opacity-0" : "text-white opacity-100"
                     }`}
             >
-                {"Let's Talk"}
+                {label}
             </span>
         </button>
     );
